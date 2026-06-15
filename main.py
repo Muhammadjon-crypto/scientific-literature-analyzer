@@ -1,3 +1,6 @@
+import matplotlib.pyplot as plt
+
+
 def read_paper(filename):
     with open(filename, "r") as file:
         return file.read()
@@ -30,7 +33,6 @@ def save_report(word_count, sentence_count, top_keywords):
         file.write("------------------------------\n")
         file.write(f"Word Count: {word_count}\n")
         file.write(f"Sentence Count: {sentence_count}\n\n")
-
         file.write("Top Keywords:\n")
 
         for word, count in top_keywords:
@@ -45,13 +47,24 @@ def save_csv(top_keywords):
             file.write(f"{word},{count}\n")
 
 
-# MAIN PROGRAM
+def save_keyword_plot(top_keywords):
+    words = [word for word, count in top_keywords]
+    counts = [count for word, count in top_keywords]
+
+    plt.figure(figsize=(8, 5))
+    plt.bar(words, counts)
+    plt.title("Top Keyword Frequencies")
+    plt.xlabel("Keyword")
+    plt.ylabel("Count")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig("keyword_plot.png")
+
 
 paper_text = read_paper("paper.txt")
 
 word_count = count_words(paper_text)
 sentence_count = count_sentences(paper_text)
-
 keyword_counts = find_keyword_counts(paper_text)
 
 top_keywords = sorted(
@@ -66,12 +79,13 @@ print("Word Count:", word_count)
 print("Sentence Count:", sentence_count)
 
 print("\nTop Keywords:")
-
 for word, count in top_keywords:
     print(word, ":", count)
 
 save_report(word_count, sentence_count, top_keywords)
 save_csv(top_keywords)
+save_keyword_plot(top_keywords)
 
 print("\nReport saved to analysis_report.txt")
 print("CSV saved to keyword_counts.csv")
+print("Plot saved to keyword_plot.png")
