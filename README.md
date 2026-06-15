@@ -1,20 +1,26 @@
 # Scientific Literature Analyzer
 
-A Python tool that analyzes scientific papers and automatically generates reports.
+A beginner-friendly Python tool for analyzing scientific text files.
 
 ## Features
 
-- Reads research papers from text files
-- Counts words
+- Reads scientific text from `paper.txt`
+- Counts total words
 - Counts sentences
-- Extracts keywords
+- Extracts important keywords
 - Ranks keywords by frequency
-- Generates analysis reports
+- Saves results to `analysis_report.txt`
 
-## Example
+## Example Output
 
-Input:
-paper.txt
+```text
+SCIENTIFIC LITERATURE ANALYSIS
+Word Count: 19
+Sentence Count: 3
 
-Output:
-analysis_report.txt
+Top Keywords:
+pcsk9: 3
+regulates: 1
+cholesterol: 1
+metabolism: 1
+affects: 1
