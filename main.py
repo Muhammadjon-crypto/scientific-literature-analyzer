@@ -30,18 +30,35 @@ def save_report(word_count, sentence_count, top_keywords):
         file.write("------------------------------\n")
         file.write(f"Word Count: {word_count}\n")
         file.write(f"Sentence Count: {sentence_count}\n\n")
+
         file.write("Top Keywords:\n")
 
         for word, count in top_keywords:
             file.write(f"{word}: {count}\n")
 
 
+def save_csv(top_keywords):
+    with open("keyword_counts.csv", "w") as file:
+        file.write("keyword,count\n")
+
+        for word, count in top_keywords:
+            file.write(f"{word},{count}\n")
+
+
+# MAIN PROGRAM
+
 paper_text = read_paper("paper.txt")
 
 word_count = count_words(paper_text)
 sentence_count = count_sentences(paper_text)
+
 keyword_counts = find_keyword_counts(paper_text)
-top_keywords = sorted(keyword_counts.items(), key=lambda item: item[1], reverse=True)[:5]
+
+top_keywords = sorted(
+    keyword_counts.items(),
+    key=lambda item: item[1],
+    reverse=True
+)[:10]
 
 print("\nSCIENTIFIC LITERATURE ANALYSIS")
 print("------------------------------")
@@ -49,9 +66,12 @@ print("Word Count:", word_count)
 print("Sentence Count:", sentence_count)
 
 print("\nTop Keywords:")
+
 for word, count in top_keywords:
     print(word, ":", count)
 
 save_report(word_count, sentence_count, top_keywords)
+save_csv(top_keywords)
 
 print("\nReport saved to analysis_report.txt")
+print("CSV saved to keyword_counts.csv")
