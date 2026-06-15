@@ -1,0 +1,11 @@
+SCIENTIFIC LITERATURE ANALYSIS
+------------------------------
+Word Count: 19
+Sentence Count: 3
+
+Top Keywords:
+pcsk9: 3
+regulates: 1
+cholesterol: 1
+metabolism: 1
+affects: 1
